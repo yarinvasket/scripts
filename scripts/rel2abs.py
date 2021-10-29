@@ -2,7 +2,6 @@
 
 import sys
 import os.path as path
-from os import linesep as endl
 
 # Check if a file was given
 if len(sys.argv) < 2:
@@ -10,9 +9,11 @@ if len(sys.argv) < 2:
     exit(1)
 
 # Open the file
-f = open(sys.argv[1], 'rw')
+f = open(sys.argv[1], 'r')
 
 lines = f.readlines()
+f.close()
+f = open(sys.argv[1], 'w')
 
 # str of new file
 buffer = ""
@@ -21,7 +22,7 @@ buffer = ""
 for line in lines:
     if line[0] != '#':
         line = path.abspath(line)
-    buffer += line + endl
+    buffer += line 
 
 # Write the buffer to the file
 f.write(buffer)
